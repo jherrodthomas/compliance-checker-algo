@@ -1,0 +1,123 @@
+{
+  "project": {
+    "name": "ADAS Lane Keep Assist — ECU Platform v2.0",
+    "target_asil": "D",
+    "date": "2026-03-21",
+    "parts_in_scope": ["2", "3", "4", "5", "6", "8", "9"]
+  },
+  "work_products": [
+    {
+      "id": "WP-001", "title": "Safety Plan",
+      "mapped_part": "2", "mapped_sections": ["6.4.1"], "status": "complete",
+      "content": "This safety plan defines the functional safety management process for the LKA ECU project. It covers the safety lifecycle from concept through production release. Responsibilities are assigned to the Safety Manager, Project Lead, and System Architect. Milestones include HARA completion, TSC review, software integration, and safety validation. The plan is version-controlled and updated at each gate review.",
+      "tags_addressed": ["safety plan", "planning", "lifecycle", "management"],
+      "methods_used": [], "traceability_links": []
+    },
+    {
+      "id": "WP-002", "title": "Documentation Management Procedure",
+      "mapped_part": "2", "mapped_sections": ["6.4.2"], "status": "complete",
+      "content": "All functional safety documentation is managed under document control procedure DCP-101. Documents are version-controlled in Polarion with traceability to requirements. Access control, review workflows, and change history are maintained.",
+      "tags_addressed": ["documentation", "traceability", "record keeping"],
+      "methods_used": ["Structured version-controlled safety documentation"], "traceability_links": []
+    },
+    {
+      "id": "WP-003", "title": "Item Definition — Lane Keep Assist",
+      "mapped_part": "3", "mapped_sections": ["6.4.1"], "status": "complete",
+      "content": "The Lane Keep Assist (LKA) system provides automated lateral vehicle control to maintain the vehicle within lane markings. The item includes a front-facing camera module, lane detection ECU, electric power steering (EPS) actuator, and CAN bus interfaces. External interfaces include driver steering wheel torque sensor, vehicle speed from ABS, and turn signal status. The system operates from -40C to +85C across active, standby, degraded, and off operating modes. Legal requirements include UNECE R79. Potential malfunctions include unintended steering torque, loss of lane detection, incorrect lane boundary interpretation, and failure to disengage on driver override.",
+      "tags_addressed": ["item definition", "interfaces", "system context", "operating modes", "use cases"],
+      "methods_used": [], "traceability_links": []
+    },
+    {
+      "id": "WP-004", "title": "Hazard Analysis and Risk Assessment",
+      "mapped_part": "3", "mapped_sections": ["7.4.3"], "status": "complete",
+      "content": "Hazard analysis per ISO 26262 Part 3. HE1: unintended steering into oncoming traffic (S3,E4,C2 → ASIL D). HE2: unintended steering off-road (S3,E4,C2 → ASIL D). HE3: loss of lane keeping during curve (S2,E3,C2 → ASIL B). HE4: failure to disengage (S1,E3,C1 → ASIL A). Operational situations include highway, urban, construction zones. Malfunctions mapped: camera failure, ECU fault, EPS stuck, CAN loss.",
+      "tags_addressed": ["HARA", "hazard analysis", "risk assessment", "ASIL", "malfunctions", "failure modes", "hazards", "operating modes"],
+      "methods_used": ["Failure Modes and Effects Analysis (FMEA)", "Functional Hazard Analysis (FHA)"],
+      "traceability_links": [{"from": "Item Definition", "to": "HARA HE1-HE4", "type": "derives"}]
+    },
+    {
+      "id": "WP-005", "title": "Safety Goals",
+      "mapped_part": "3", "mapped_sections": ["8.4.1", "8.4.2"], "status": "complete",
+      "content": "SG1: LKA shall not apply unintended steering torque toward oncoming traffic (ASIL D). Safe state: EPS torque = 0 Nm. FTTI: 100ms. SG2: LKA shall not apply unintended steering torque toward road edge (ASIL D). Safe state: EPS torque = 0 Nm. FTTI: 100ms. SG3: LKA shall maintain lane keeping or degrade gracefully (ASIL B). Each SG documented with hazardous event, ASIL, rationale, assumptions.",
+      "tags_addressed": ["safety goals", "SG", "ASIL", "HARA", "documentation", "traceability"],
+      "methods_used": [],
+      "traceability_links": [{"from": "SG (Part 3)", "to": "FSR (Part 4)", "type": "derives"}]
+    },
+    {
+      "id": "WP-006", "title": "Functional Safety Concept",
+      "mapped_part": "3", "mapped_sections": ["8.4.3"], "status": "complete",
+      "content": "FSR1: Limit torque overlay to ±3 Nm (ASIL D). FSR2: Independent monitoring detect torque deviations >0.5 Nm within 50ms (ASIL D). FSR3: Driver override detection within 20ms at >4 Nm torque (ASIL D). FSR4: Graceful degradation if camera lost (ASIL B). FSRs allocated to camera, ECU, EPS, safety monitor.",
+      "tags_addressed": ["FSC", "functional safety concept", "FSR", "allocation"],
+      "methods_used": ["Structured specification technique"],
+      "traceability_links": [
+        {"from": "SG (Part 3)", "to": "FSR (Part 4)", "type": "derives"},
+        {"from": "FSR", "to": "TSR (Part 4)", "type": "derives"}
+      ]
+    },
+    {
+      "id": "WP-007", "title": "Technical Safety Concept",
+      "mapped_part": "4", "mapped_sections": ["6.4.3", "6.4.4"], "status": "complete",
+      "content": "TSR1: EPS torque hardware-limited ±3 Nm by current limiter (ASIL D). TSR2: Redundant torque sensor with 50ms response (ASIL D). TSR3: Steering wheel torque threshold 4 Nm, 20ms latency (ASIL D). TSR4: Camera fallback to reduced-confidence mode (ASIL B). Requirements unambiguous, verifiable, traceable.",
+      "tags_addressed": ["TSR", "technical safety requirement", "allocation", "FSR", "specification", "requirements", "traceability"],
+      "methods_used": ["Structured specification technique", "Layered TSR decomposition"],
+      "traceability_links": [
+        {"from": "FSR", "to": "TSR (Part 4)", "type": "derives"},
+        {"from": "TSR", "to": "HSR/SSR (Parts 5/6)", "type": "derives"}
+      ]
+    },
+    {
+      "id": "WP-008", "title": "System Architecture",
+      "mapped_part": "4", "mapped_sections": ["7.4.1", "7.4.2"], "status": "complete",
+      "content": "Components: Camera Module, Lane Detection ECU, EPS Actuator with hardware current limiter, CAN bus CRC protection. Safety mechanisms: redundant torque sensor, independent watchdog, hardware torque limiter, CRC-protected CAN. Partitioning ensures ASIL D independence from QM.",
+      "tags_addressed": ["architecture", "system design", "TSR", "fault tolerance", "safety mechanisms", "fault detection", "ASIL"],
+      "methods_used": ["Modular decomposition", "Redundancy-based design", "Safety mechanism insertion", "Watchdog timers"],
+      "traceability_links": []
+    },
+    {
+      "id": "WP-009", "title": "Hardware Safety Requirements",
+      "mapped_part": "5", "mapped_sections": ["5.4.1", "6.4.1", "7.4.1"], "status": "complete",
+      "content": "HSR1: Current limiter restricts EPS motor current to safe envelope (ASIL D). HSR2: Redundant torque sensor electrically independent (ASIL D). HSR3: Watchdog resets ECU within 10ms of heartbeat failure. Dual-channel sensor, independent power domains, -40C to +125C qualification.",
+      "tags_addressed": ["hardware", "HSR", "specification", "hardware design", "fault tolerance", "TSR", "constraints"],
+      "methods_used": ["Design with diagnostic coverage", "Design for testability (DFT)", "Redundant circuitry design"],
+      "traceability_links": [{"from": "TSR", "to": "HSR/SSR (Parts 5/6)", "type": "derives"}]
+    },
+    {
+      "id": "WP-010", "title": "Software Safety Requirements",
+      "mapped_part": "6", "mapped_sections": ["6.4.1"], "status": "complete",
+      "content": "SSR1: Lane detection output within 20ms cycle (ASIL D). SSR2: Torque controller enforces ±3 Nm software limit (ASIL D). SSR3: Safety monitor independently verifies torque each cycle (ASIL D). SSR4: Diagnostics logs safety events with timestamps (ASIL B). Traceable to TSRs.",
+      "tags_addressed": ["SSR", "specification", "requirements", "traceability", "software"],
+      "methods_used": ["Semi-formal specification", "Use of language subsets (e.g., MISRA C)"],
+      "traceability_links": [
+        {"from": "TSR", "to": "HSR/SSR (Parts 5/6)", "type": "derives"},
+        {"from": "SSR", "to": "Code + Tests (Part 6)", "type": "derives"}
+      ]
+    },
+    {
+      "id": "WP-011", "title": "Software Architecture Document",
+      "mapped_part": "6", "mapped_sections": ["7.4.1"], "status": "partial",
+      "content": "5 AUTOSAR SWCs: Lane Detection, Path Planning, Torque Controller, Safety Monitor, Diagnostics. Memory partitioning, OS protection, HSIS references. Interfaces and data flow defined.",
+      "tags_addressed": ["architecture", "design", "SSR", "interface"],
+      "methods_used": ["Modularization and layering", "Use of software partitioning"],
+      "traceability_links": []
+    },
+    {
+      "id": "WP-012", "title": "Verification and Change Management",
+      "mapped_part": "8", "mapped_sections": ["8.4.1", "7.4.1", "6.4.1"], "status": "partial",
+      "content": "Requirements-based testing covers SSRs and TSRs. Change management includes safety impact analysis. RTM with bidirectional traceability from SG to test cases in Polarion.",
+      "tags_addressed": ["verification", "change management", "impact analysis", "requirements", "traceability", "safety goals"],
+      "methods_used": ["Requirements-based testing", "Use of a requirements traceability matrix (RTM)", "Bidirectional linking from SG to test cases"],
+      "traceability_links": [
+        {"from": "All requirements", "to": "Verification and Validation Results (Parts 4-7)", "type": "verifies"},
+        {"from": "Change Request", "to": "Re-verification Plan (Part 8)", "type": "triggers"}
+      ]
+    },
+    {
+      "id": "WP-013", "title": "FMEA and Safety Analysis",
+      "mapped_part": "9", "mapped_sections": ["5.4.1", "6.4.1"], "status": "complete",
+      "content": "System-level FMEA covering all functional blocks. Failure modes for camera, ECU, EPS, CAN. Inductive (FMEA) + deductive (FTA) analysis. Fault injection planned for ASIL D. Diagnostic coverage confirmed. Results feed safety case.",
+      "tags_addressed": ["ASIL", "fault analysis", "safety goals", "inductive", "deductive", "FMEA", "FTA", "validation"],
+      "methods_used": ["Failure Modes and Effects Analysis (FMEA)", "Fault Tree Analysis (FTA)", "Functional Hazard Analysis (FHA)", "Mapping findings to safety case argument structure"],
+      "traceability_links": []
+    }
+  ]
+}

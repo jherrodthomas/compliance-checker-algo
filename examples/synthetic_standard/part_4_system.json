@@ -1,0 +1,67 @@
+{
+  "part": "4",
+  "title": "Product development at the system level",
+  "clauses": [
+    {
+      "section": "4.1",
+      "title": "Scope of system-level development",
+      "type": "overview",
+      "text": "This part specifies requirements for developing safety-related systems, including technical safety concepts, system design, integration, and verification.",
+      "tags": ["scope", "system level", "overview"],
+      "asil_level": "all",
+      "notes": [],
+      "cross_references": []
+    },
+    {
+      "section": "5.1",
+      "title": "Technical safety concept",
+      "type": "requirement",
+      "text": "A technical safety concept shall be developed that specifies the technical safety requirements and their allocation to hardware and software elements.",
+      "tags": ["technical safety concept", "requirements allocation", "hardware", "software"],
+      "asil_level": "all",
+      "notes": ["Derives from the functional safety concept."],
+      "cross_references": ["part_3:8.1"]
+    },
+    {
+      "section": "6.1",
+      "title": "System design specification",
+      "type": "requirement",
+      "text": "The system design shall specify the architecture, interfaces between elements, and the safety mechanisms that ensure compliance with the technical safety requirements.",
+      "tags": ["system design", "architecture", "safety mechanisms", "interfaces"],
+      "asil_level": "all",
+      "notes": ["Safety mechanisms include monitoring, redundancy, and diagnostics."],
+      "cross_references": ["5.1"]
+    },
+    {
+      "section": "7.1",
+      "title": "System integration and testing",
+      "type": "requirement",
+      "text": "System integration shall verify that the integrated system meets the technical safety requirements. Test cases shall be derived from the technical safety concept.",
+      "tags": ["integration", "testing", "verification"],
+      "asil_level": "all",
+      "notes": ["Both positive and negative test cases are required."],
+      "cross_references": ["5.1", "6.1"]
+    },
+    {
+      "section": "8.1",
+      "title": "Safety validation",
+      "type": "requirement",
+      "text": "Safety validation shall confirm that the safety goals are achieved at the vehicle level under the intended operating conditions.",
+      "tags": ["validation", "safety goals", "vehicle level"],
+      "asil_level": "all",
+      "notes": ["Validation is distinct from verification."],
+      "cross_references": ["part_3:7.1"]
+    }
+  ],
+  "methods_tables": [
+    {
+      "section": "5.1",
+      "title": "Methods for technical safety concept",
+      "methods": [
+        {"name": "Failure Modes and Effects Analysis (FMEA)", "recommendation": "highly recommended", "asil": ["C", "D"]},
+        {"name": "Fault Tree Analysis (FTA)", "recommendation": "recommended", "asil": ["B", "C", "D"]},
+        {"name": "Safety Analysis", "recommendation": "required", "asil": ["A", "B", "C", "D"]}
+      ]
+    }
+  ]
+}

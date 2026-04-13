@@ -1,0 +1,110 @@
+================================================================
+  ComplianceIQ — Quick Start Guide
+================================================================
+
+WHAT IS THIS?
+  A standard-agnostic compliance checker. Give it any safety
+  standard (ISO 26262, ISO 21434, SOTIF, ASPICE, etc.) and any
+  work product (Word doc, Excel, PDF, etc.) — it runs an 8-layer
+  algorithm and generates a timestamped compliance report.
+
+================================================================
+STEP 1: SETUP (one time only)
+================================================================
+
+  Double-click:  setup.bat
+
+  This installs 3 Python packages: python-docx, openpyxl, reportlab.
+  (Requires Python 3.8+ installed — get it from python.org)
+
+================================================================
+STEP 2: RUN A COMPLIANCE CHECK
+================================================================
+
+  Open Command Prompt (or PowerShell) in this folder and type:
+
+  run_compliance.bat <standard_file> <work_product_file>
+
+  That's it. Two arguments: the standard, then your document.
+
+================================================================
+EXAMPLES
+================================================================
+
+  Using files already in this folder:
+
+    run_compliance.bat test_sample_iso_standard.md sample_user_doc_v2.json --format both
+
+  With your own Word doc:
+
+    run_compliance.bat test_sample_iso_standard.md "My Safety Plan.docx" --format docx
+
+  With an Excel spreadsheet:
+
+    run_compliance.bat test_sample_iso_standard.md requirements.xlsx --format both
+
+  With a whole folder of standards + a folder of work products:
+
+    run_compliance.bat .\my_standards\ .\my_work_products\ --format all
+
+================================================================
+OPTIONS
+================================================================
+
+  --format FORMAT    What reports to generate:
+                       json   = machine-readable JSON only
+                       docx   = Word document only
+                       pdf    = PDF only
+                       both   = Word + PDF  (recommended)
+                       all    = JSON + Word + PDF
+
+  --convert          If your standard is a PDF, this converts it
+                     to Markdown first (needs pdftotext + pandoc)
+
+  --output DIR       Save reports to a custom folder
+                     (default: .\reports\)
+
+================================================================
+OUTPUT
+================================================================
+
+  Reports are saved to the .\reports\ subfolder with timestamps:
+
+    reports\
+      compliance_<standard>_vs_<artifact>_2026-03-27_14-30-00.docx
+      compliance_<standard>_vs_<artifact>_2026-03-27_14-30-00.pdf
+      compliance_<standard>_vs_<artifact>_2026-03-27_14-30-00.json
+
+  Each report includes:
+    - Executive Dashboard (overall grade A-F, score %)
+    - Compliance Matrix (every requirement, pass/fail)
+    - Gap Analysis (what's missing, prioritized)
+    - Traceability Assessment
+    - Method/Practice Audit
+    - Recommendations (prioritized action items)
+
+================================================================
+FILES IN THIS FOLDER
+================================================================
+
+  Launcher Scripts:
+    setup.bat              <-- Run once to install dependencies
+    run_compliance.bat     <-- Windows launcher (use this!)
+    run_compliance.sh      <-- Linux/Mac launcher
+
+  Engine (don't need to touch these):
+    agnostic_engine.py     <-- Main 8-layer algorithm engine
+    markdown_parser.py     <-- Converts .md standards to JSON
+    artifact_ingester.py   <-- Reads .docx, .xlsx, .pdf, .md, .txt
+    report_generator.py    <-- Generates PDF reports
+    report_generator_docx.py  <-- Generates Word reports
+
+  Sample Data (for testing):
+    test_sample_iso_standard.md   <-- Sample ISO 26262 Part 4 (markdown)
+    sample_user_doc_v2.json       <-- Sample work products (JSON)
+    iso_26262_part_*.json         <-- Full ISO 26262 Parts 1-12
+
+  SaaS Go-To-Market Docs:
+    saas-docs\                    <-- Marketing materials
+
+================================================================

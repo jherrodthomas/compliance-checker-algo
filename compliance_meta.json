@@ -1,0 +1,51 @@
+{
+  "_comment": "Optional meta-config for the agnostic compliance engine. If present, provides hints to accelerate schema discovery. If absent, the engine auto-discovers everything.",
+
+  "standard_name": "ISO 26262:2018 — Functional Safety for Road Vehicles",
+  "standard_version": "2nd Edition",
+
+  "field_mappings": {
+    "text_field": "text",
+    "id_field": "section",
+    "title_field": "title",
+    "risk_field": "asil_level",
+    "tag_field": "tags",
+    "type_field": "type"
+  },
+
+  "risk_scale": ["A", "B", "C", "D"],
+
+  "risk_labels": {
+    "A": "ASIL A (lowest automotive safety integrity)",
+    "B": "ASIL B",
+    "C": "ASIL C",
+    "D": "ASIL D (highest automotive safety integrity)"
+  },
+
+  "requirement_type_values": ["requirement"],
+  "informative_type_values": ["overview", "guideline"],
+
+  "traceability_paths": [
+    {
+      "name": "V-Model Safety Chain",
+      "path": ["Safety Goal", "FSR", "TSR", "SSR", "Code + Tests"],
+      "description": "Full traceability from concept through implementation"
+    }
+  ],
+
+  "group_key": "part",
+  "group_labels": {
+    "1": "Vocabulary",
+    "2": "Management of functional safety",
+    "3": "Concept phase",
+    "4": "Product development at the system level",
+    "5": "Product development at the hardware level",
+    "6": "Product development at the software level",
+    "7": "Production, operation, service and decommissioning",
+    "8": "Supporting processes",
+    "9": "ASIL-oriented and safety-oriented analysis",
+    "10": "Guideline on ISO 26262",
+    "11": "Guideline on application to semiconductors",
+    "12": "Adaptation for motorcycles"
+  }
+}

@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CSP removed: local desktop app, no external content risk -->
+  <title>Lion of Functional Safety Engine™</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,800;1,9..144,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* === CSS Variables & Reset === */
+    :root {
+      --c-bg: #0a1628;
+      --c-bg-light: #f5f5f0;
+      --c-surface: #111d33;
+      --c-surface-light: #ffffff;
+      --c-border: #1e2d47;
+      --c-border-light: #e2e2dd;
+      --c-navy: #0a1628;
+      --c-text: #e4e8ef;
+      --c-text-light: #1a1a1a;
+      --c-text-muted: #7a869a;
+      --c-accent: #38bdf8;
+      --c-accent-glow: rgba(56, 189, 248, 0.15);
+      --c-green: #22c55e;
+      --c-amber: #f59e0b;
+      --c-red: #ef4444;
+      --c-gold: #d4a017;
+      --font-display: 'Fraunces', Georgia, serif;
+      --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+      --radius: 12px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.3);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--c-bg);
+      color: var(--c-text);
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* === Titlebar === */
+    .titlebar {
+      -webkit-app-region: drag;
+      height: 48px;
+      background: rgba(10, 22, 40, 0.95);
+      border-bottom: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      flex-shrink: 0;
+      backdrop-filter: blur(12px);
+    }
+    .titlebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .titlebar-logo svg {
+      width: 24px;
+      height: 24px;
+    }
+    .titlebar-logo span {
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--c-accent);
+      letter-spacing: 0.5px;
+    }
+    .titlebar-version {
+      margin-left: auto;
+      font-size: 11px;
+      color: var(--c-text-muted);
+      font-family: var(--font-mono);
+      -webkit-app-region: no-drag;
+    }
+
+    /* === Main Content Area - 3 screens: landing, progress, report === */
+    .app-body {
+      flex: 1;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(20px);
+    }
+    .screen.active {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    /* --- Screen 1: Landing / Folder Picker ------------------- */
+    .landing {
+      gap: 40px;
+      text-align: center;
+      padding: 40px;
+    }
+
+    .hero-icon {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--c-accent-glow), rgba(34, 197, 94, 0.08));
+      border: 2px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 30px rgba(56, 189, 248, 0.1); }
+      50% { box-shadow: 0 0 60px rgba(56, 189, 248, 0.2); }
+    }
+    .hero-icon svg { width: 56px; height: 56px; }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: 32px;
+      font-weight: 800;
+      line-height: 1.2;
+      background: linear-gradient(135deg, var(--c-accent) 0%, #a78bfa 50%, var(--c-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-subtitle {
+      font-size: 15px;
+      color: var(--c-text-muted);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .folder-input-group {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      width: 100%;
+      max-width: 640px;
+    }
+    .folder-path-input {
+      flex: 1;
+      height: 52px;
+      background: var(--c-surface);
+      border: 1.5px solid var(--c-border);
+      border-right: none;
+      border-radius: var(--radius) 0 0 var(--radius);
+      padding: 0 18px;
+      font-family: var(--font-mono);
+      font-size: 13px;
+      color: var(--c-text);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .folder-path-input::placeholder { color: var(--c-text-muted); }
+    .folder-path-input:focus { border-color: var(--c-accent); }
+
+    .btn-browse {
+      height: 52px;
+      padding: 0 20px;
+      background: var(--c-surface);
+      border: 1.5px solid var(--c-border);
+      border-left: none;
+      border-right: none;
+      color: var(--c-text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-browse:hover { background: var(--c-border); color: var(--c-text); }
+    .btn-browse svg { width: 18px; height: 18px; }
+
+    .btn-analyze {
+      height: 52px;
+      padding: 0 32px;
+      background: linear-gradient(135deg, var(--c-accent), #6366f1);
+      border: none;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.2s;
+      font-family: var(--font-body);
+      white-space: nowrap;
+      letter-spacing: 0.3px;
+    }
+    .btn-analyze:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3); }
+    .btn-analyze:active { transform: translateY(0); }
+    .btn-analyze:disabled {
+      background: var(--c-border);
+      color: var(--c-text-muted);
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* File preview chips */
+    .file-preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      max-width: 640px;
+      max-height: 120px;
+      overflow-y: auto;
+    }
+    .file-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: 20px;
+      font-size: 12px;
+      font-family: var(--font-mono);
+      color: var(--c-text-muted);
+    }
+    .file-chip .ext {
+      background: var(--c-accent-glow);
+      color: var(--c-accent);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Report format toggle */
+    .format-selector {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      background: var(--c-surface);
+      border: 1.5px solid var(--c-border);
+      border-radius: var(--radius-sm);
+      padding: 4px;
+    }
+    .format-option {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 6px;
+      border: none;
+      background: transparent;
+      color: var(--c-text-muted);
+      font-size: 13px;
+      font-weight: 600;
+      font-family: var(--font-body);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .format-option:hover { color: var(--c-text); }
+    .format-option.active {
+      background: var(--c-accent-glow);
+      color: var(--c-accent);
+      box-shadow: 0 1px 4px rgba(56, 189, 248, 0.15);
+    }
+    .format-option svg { width: 16px; height: 16px; }
+    .format-label {
+      font-size: 12px;
+      color: var(--c-text-muted);
+      margin-right: 8px;
+      font-weight: 500;
+    }
+
+    .engine-status {
+      font-size: 12px;
+      color: var(--c-text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .engine-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--c-green);
+    }
+    .engine-dot.missing { background: var(--c-red); }
+
+    /* --- Screen 2: Analysis Progress ------------------------- */
+    .progress-screen {
+      gap: 30px;
+      padding: 40px;
+    }
+
+    .progress-ring-container {
+      position: relative;
+      width: 180px;
+      height: 180px;
+    }
+    .progress-ring-container svg { width: 180px; height: 180px; transform: rotate(-90deg); }
+    .progress-ring-bg {
+      fill: none;
+      stroke: var(--c-border);
+      stroke-width: 8;
+    }
+    .progress-ring-fill {
+      fill: none;
+      stroke: var(--c-accent);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 502;
+      stroke-dashoffset: 502;
+      transition: stroke-dashoffset 0.6s ease;
+    }
+    .progress-pct {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .progress-pct .num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      font-weight: 800;
+      color: var(--c-accent);
+    }
+    .progress-pct .label {
+      font-size: 12px;
+      color: var(--c-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .progress-stage {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--c-text);
+      text-align: center;
+    }
+
+    .progress-log {
+      width: 100%;
+      max-width: 700px;
+      height: 180px;
+      background: var(--c-surface);
+      border: 1px solid var(--c-border);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--c-text-muted);
+      overflow-y: auto;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .btn-cancel {
+      height: 44px;
+      padding: 0 28px;
+      background: transparent;
+      border: 1.5px solid var(--c-red);
+      border-radius: var(--radius-sm);
+      color: var(--c-red);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      font-family: var(--font-body);
+    }
+    .btn-cancel:hover { background: rgba(239, 68, 68, 0.1); }
+
+    /* --- Screen 3: Report Viewer ----------------------------- */
+    .report-screen {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: stretch;
+      padding: 0;
+    }
+    .report-toolbar {
+      height: 48px;
+      background: var(--c-surface);
+      border-bottom: 1px solid var(--c-border);
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+    .report-toolbar .report-name {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--c-text-muted);
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .toolbar-btn {
+      height: 32px;
+      padding: 0 14px;
+      background: var(--c-bg);
+      border: 1px solid var(--c-border);
+      border-radius: 6px;
+      color: var(--c-text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: var(--font-body);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .toolbar-btn:hover { background: var(--c-border); color: var(--c-text); }
+    .toolbar-btn svg { width: 14px; height: 14px; }
+
+    .report-frame {
+      flex: 1;
+      border: none;
+      background: #fff;
+    }
+
+    /* --- Error overlay --------------------------------------- */
+    .error-banner {
+      background: rgba(239, 68, 68, 0.1);
+      border: 1px solid rgba(239, 68, 68, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      max-width: 600px;
+      color: var(--c-red);
+      font-size: 13px;
+      line-height: 1.6;
+      display: none;
+    }
+    .error-banner.visible { display: block; }
+
+    /* --- Scrollbar ------------------------------------------- */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--c-text-muted); }
+  </style>
+</head>
+<body>
+
+  <!-- === Titlebar === -->
+  <div class="titlebar">
+    <div class="titlebar-logo">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--c-accent)">
+        <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+      </svg>
+      <span>Lion of Functional Safety Engine</span>
+    </div>
+    <div class="titlebar-version">v1.0.0</div>
+  </div>
+
+  <!-- === App Body === -->
+  <div class="app-body">
+
+    <!-- Screen 1: Landing -->
+    <div class="screen landing active" id="screen-landing">
+      <div class="hero-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color: var(--c-accent)">
+          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+      </div>
+
+      <div>
+        <h1 class="hero-title">ISO 26262 Compliance Checker</h1>
+        <p class="hero-subtitle">Point to your work products folder and get a full 8-layer compliance assessment with an interactive HTML report.</p>
+      </div>
+
+      <div class="folder-input-group">
+        <input type="text" class="folder-path-input" id="folderPath" placeholder="C:\Projects\my-ecu-safety-docs" spellcheck="false">
+        <button class="btn-browse" id="btnBrowse" title="Browse for folder">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+          Browse
+        </button>
+        <button class="btn-analyze" id="btnAnalyze" disabled>Run Analysis</button>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <span class="format-label">Report format:</span>
+        <div class="format-selector" id="formatSelector">
+          <button class="format-option active" data-format="html" title="Interactive HTML report (opens in app)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V9z"/><polyline points="13 2 13 9 20 9"/></svg>
+            HTML
+          </button>
+          <button class="format-option" data-format="docx" title="Word document (.docx)">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            DOCX
+          </button>
+          <button class="format-option" data-format="both" title="Generate both formats">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3h-8a2 2 0 00-2 2v2h12V5a2 2 0 00-2-2z"/></svg>
+            Both
+          </button>
+        </div>
+      </div>
+
+      <div class="file-preview" id="filePreview"></div>
+      <div class="engine-status" id="engineStatus"></div>
+      <div class="error-banner" id="landingError"></div>
+    </div>
+
+    <!-- Screen 2: Progress -->
+    <div class="screen progress-screen" id="screen-progress">
+      <div class="progress-ring-container">
+        <svg viewBox="0 0 180 180">
+          <circle class="progress-ring-bg" cx="90" cy="90" r="80"/>
+          <circle class="progress-ring-fill" id="progressRing" cx="90" cy="90" r="80"/>
+        </svg>
+        <div class="progress-pct">
+          <span class="num" id="progressNum">0</span>
+          <span class="label">Analyzing</span>
+        </div>
+      </div>
+      <div class="progress-stage" id="progressStage">Initializing engine...</div>
+      <div class="progress-log" id="progressLog"></div>
+      <button class="btn-cancel" id="btnCancel">Cancel Analysis</button>
+    </div>
+
+    <!-- Screen 3: Report Viewer -->
+    <div class="screen report-screen" id="screen-report">
+      <div class="report-toolbar">
+        <span class="report-name" id="reportName">compliance_report.html</span>
+        <button class="toolbar-btn" id="btnOpenExternal" title="Open in browser">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>
+          Open in Browser
+        </button>
+        <button class="toolbar-btn" id="btnOpenFolder" title="Show in Explorer">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+          Show in Folder
+        </button>
+        <button class="toolbar-btn" id="btnNewAnalysis" title="Start new analysis">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16m8-8H4"/></svg>
+          New Analysis
+        </button>
+      </div>
+      <iframe class="report-frame" id="reportFrame" sandbox="allow-scripts allow-same-origin"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // ===============================================================
+    //  App State & DOM Refs
+    // ===============================================================
+    const state = {
+      folderPath: '',
+      reportFormat: 'html',
+      currentReport: null,
+      reportsDir: null,
+      progressCleanup: null
+    };
+
+    // ===============================================================
+    //  Format Selector
+    // ===============================================================
+    document.getElementById('formatSelector').addEventListener('click', (e) => {
+      const btn = e.target.closest('.format-option');
+      if (!btn) return;
+      document.querySelectorAll('.format-option').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      state.reportFormat = btn.dataset.format;
+    });
+
+    const $ = (sel) => document.querySelector(sel);
+    const folderInput   = $('#folderPath');
+    const btnBrowse     = $('#btnBrowse');
+    const btnAnalyze    = $('#btnAnalyze');
+    const filePreview   = $('#filePreview');
+    const engineStatus  = $('#engineStatus');
+    const landingError  = $('#landingError');
+    const progressRing  = $('#progressRing');
+    const progressNum   = $('#progressNum');
+    const progressStage = $('#progressStage');
+    const progressLog   = $('#progressLog');
+    const btnCancel     = $('#btnCancel');
+    const reportName    = $('#reportName');
+    const reportFrame   = $('#reportFrame');
+
+    // ===============================================================
+    //  Screen Navigation
+    // ===============================================================
+    function showScreen(id) {
+      document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+      $(`#screen-${id}`).classList.add('active');
+    }
+
+    // ===============================================================
+    //  Engine Status Check
+    // ===============================================================
+    async function checkEngine() {
+      const result = await window.lion.checkEngine();
+      if (result.exists) {
+        engineStatus.innerHTML = '<span class="engine-dot"></span> Engine ready';
+      } else {
+        engineStatus.innerHTML = '<span class="engine-dot missing"></span> Engine binary not found - see build instructions';
+      }
+    }
+
+    // ===============================================================
+    //  Folder Selection & File Preview
+    // ===============================================================
+    async function setFolder(folderPath) {
+      if (!folderPath) return;
+      state.folderPath = folderPath;
+      folderInput.value = folderPath;
+      btnAnalyze.disabled = false;
+      landingError.classList.remove('visible');
+
+      // Show file preview
+      const result = await window.lion.listFolder(folderPath);
+      filePreview.innerHTML = '';
+      if (result.ok && result.files.length > 0) {
+        result.files.forEach(f => {
+          const chip = document.createElement('div');
+          chip.className = 'file-chip';
+          const sizeKB = (f.size / 1024).toFixed(0);
+          chip.innerHTML = `<span class="ext">${f.ext.replace('.', '')}</span> ${f.name} <span style="opacity:0.5">${sizeKB}KB</span>`;
+          filePreview.appendChild(chip);
+        });
+      } else if (result.ok) {
+        filePreview.innerHTML = '<div style="color:var(--c-amber);font-size:13px">No recognized work product files found in this folder.</div>';
+      }
+    }
+
+    btnBrowse.addEventListener('click', async () => {
+      const folder = await window.lion.selectFolder();
+      if (folder) setFolder(folder);
+    });
+
+    folderInput.addEventListener('change', () => setFolder(folderInput.value.trim()));
+    folderInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') {
+        setFolder(folderInput.value.trim());
+      }
+    });
+
+    // ===============================================================
+    //  Run Analysis
+    // ===============================================================
+    btnAnalyze.addEventListener('click', async () => {
+      if (!state.folderPath) return;
+
+      // Switch to progress screen
+      showScreen('progress');
+      progressLog.textContent = '';
+      setProgress(0, 'Starting engine...');
+
+      // Listen for progress updates
+      let lineCount = 0;
+      state.progressCleanup = window.lion.onProgress((text) => {
+        progressLog.textContent += text;
+        progressLog.scrollTop = progressLog.scrollHeight;
+
+        // Parse progress hints from stdout
+        lineCount++;
+        const lines = text.split('\n');
+        for (const line of lines) {
+          const lower = line.toLowerCase();
+          if (lower.includes('ingesting') || lower.includes('loading'))  setProgress(10, 'Loading work products...');
+          else if (lower.includes('layer 1') || lower.includes('node'))  setProgress(20, 'Layer 1 - Node Coverage...');
+          else if (lower.includes('layer 2') || lower.includes('tf-idf')) setProgress(30, 'Layer 2 - Content Alignment (TF-IDF)...');
+          else if (lower.includes('layer 3') || lower.includes('semantic')) setProgress(40, 'Layer 3 - Semantic Matching...');
+          else if (lower.includes('layer 4') || lower.includes('concept')) setProgress(50, 'Layer 4 - Concept Coverage...');
+          else if (lower.includes('layer 5') || lower.includes('reference') || lower.includes('graph')) setProgress(60, 'Layer 5 - Reference Integrity (Graph BFS)...');
+          else if (lower.includes('layer 6') || lower.includes('method'))  setProgress(70, 'Layer 6 - Method Audit...');
+          else if (lower.includes('layer 7') || lower.includes('traceability')) setProgress(75, 'Layer 7 - Traceability Chain...');
+          else if (lower.includes('layer 8') || lower.includes('gap') || lower.includes('bayesian')) setProgress(80, 'Layer 8 - Gap Analysis + Bayesian Risk...');
+          else if (lower.includes('generating') || lower.includes('report')) setProgress(90, 'Generating reports...');
+          else if (lower.includes('complete') || lower.includes('done') || lower.includes('finished')) setProgress(100, 'Analysis complete!');
+        }
+      });
+
+      // Run it
+      const result = await window.lion.runAnalysis(state.folderPath, state.reportFormat);
+
+      // Cleanup progress listener
+      if (state.progressCleanup) {
+        state.progressCleanup();
+        state.progressCleanup = null;
+      }
+
+      if (result.ok && (result.htmlReport || result.docxReport)) {
+        state.reportsDir = result.reportsDir;
+
+        if (state.reportFormat === 'docx' && result.docxReport) {
+          // DOCX: open in system default app (Word)
+          state.currentReport = result.docxReport;
+          setProgress(100, 'Done! Opening DOCX report...');
+          setTimeout(() => {
+            window.lion.openExternal(result.docxReport);
+            showScreen('landing');
+          }, 600);
+        } else if (result.htmlReport) {
+          // HTML or Both: show in inline viewer
+          state.currentReport = result.htmlReport;
+          setProgress(100, 'Done! Loading report...');
+          setTimeout(() => loadReport(result.htmlReport), 600);
+          // If both, also open DOCX
+          if (state.reportFormat === 'both' && result.docxReport) {
+            setTimeout(() => window.lion.openExternal(result.docxReport), 1200);
+          }
+        } else {
+          // Fallback
+          state.currentReport = result.docxReport;
+          setProgress(100, 'Done! Opening report...');
+          setTimeout(() => {
+            window.lion.openExternal(result.docxReport);
+            showScreen('landing');
+          }, 600);
+        }
+      } else {
+        // Show error
+        setProgress(0, 'Analysis failed');
+        const errMsg = result.error || result.stderr || 'Unknown error. Check the log above.';
+        progressLog.textContent += '\n\n--- ERROR ---\n' + errMsg;
+      }
+    });
+
+    function setProgress(pct, stage) {
+      const circumference = 2 * Math.PI * 80; // r=80
+      const offset = circumference - (pct / 100) * circumference;
+      progressRing.style.strokeDashoffset = offset;
+      progressNum.textContent = pct;
+      if (stage) progressStage.textContent = stage;
+    }
+
+    btnCancel.addEventListener('click', async () => {
+      await window.lion.cancelAnalysis();
+      if (state.progressCleanup) { state.progressCleanup(); state.progressCleanup = null; }
+      showScreen('landing');
+    });
+
+    // ===============================================================
+    //  Report Viewer
+    // ===============================================================
+    async function loadReport(htmlPath) {
+      showScreen('report');
+      const parts = htmlPath.replace(/\\/g, '/').split('/');
+      reportName.textContent = parts[parts.length - 1];
+
+      // Load HTML content into iframe via srcdoc
+      const result = await window.lion.readHtmlFile(htmlPath);
+      if (result.ok) {
+        reportFrame.srcdoc = result.content;
+      } else {
+        reportFrame.srcdoc = `<html><body style="font-family:sans-serif;padding:40px;color:#666"><h2>Could not load report</h2><p>${result.error}</p></body></html>`;
+      }
+    }
+
+    // Report toolbar actions
+    $('#btnOpenExternal').addEventListener('click', () => {
+      if (state.currentReport) window.lion.openExternal(state.currentReport);
+    });
+    $('#btnOpenFolder').addEventListener('click', () => {
+      if (state.currentReport) window.lion.openFolder(state.currentReport);
+    });
+    $('#btnNewAnalysis').addEventListener('click', () => {
+      showScreen('landing');
+      state.currentReport = null;
+      reportFrame.srcdoc = '';
+    });
+
+    // ===============================================================
+    //  Init
+    // ===============================================================
+    checkEngine();
+  </script>
+</body>
+</html>

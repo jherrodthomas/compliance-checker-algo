@@ -1,0 +1,69 @@
+# ── Proprietary Standards (must be purchased separately) ──
+# ISO 26262 parts (PDFs, Markdown conversions, JSON extracts)
+26262/
+21434/
+21448/
+ASPICE/
+iso_26262_part_*.json
+
+# ── Self-contained checker with embedded standard (proprietary) ──
+ISO26262_Checker.py
+run_26262.bat
+
+# ── Company-specific checksheets ──
+Checksheets/
+
+# ── SaaS marketing docs (unrelated) ──
+saas-docs/
+
+# ── Build Artifacts ──
+LionSafetyEngine/
+dist/
+engine/
+build_temp/
+*.asar
+*.spec
+
+# ── Generated Reports ──
+reports/
+compliance_report*
+test_report*
+
+# ── Duplicate / legacy desktop scaffold ──
+lion-desktop/
+
+# ── Internal dev docs ──
+IMPLEMENTATION_PLAN_v3.md
+IMPLEMENTATION_SUMMARY.md
+REPORT_GENERATOR_SUMMARY.txt
+
+# ── Temp / Cache ──
+__pycache__/
+*.pyc
+*.pyo
+_work_products_temp/
+_payload.json
+
+# ── Electron / Node ──
+node_modules/
+package-lock.json
+
+# ── Test Artifacts ──
+test_artifact.*
+test_requirements.*
+test_sample_iso_standard.*
+test_sample_output.json
+
+# ── OS ──
+Thumbs.db
+.DS_Store
+*.~lock.*#
+
+# ── Push helper (not needed in repo) ──
+push_to_github.bat
+
+# ── Editor ──
+.vscode/
+.idea/
+*.swp
+*.swo

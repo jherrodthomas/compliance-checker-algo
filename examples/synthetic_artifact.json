@@ -1,0 +1,48 @@
+{
+  "project": {
+    "name": "Smart Thermostat Controller — Safety-Critical Firmware v1.0",
+    "target_asil": "B",
+    "date": "2026-01-15",
+    "parts_in_scope": ["2", "3", "4"]
+  },
+  "work_products": [
+    {
+      "id": "WP-001", "title": "Safety Plan",
+      "mapped_part": "2", "mapped_sections": ["5.1"], "status": "complete",
+      "content": "This safety plan defines the activities, responsibilities, and milestones for the thermostat controller safety lifecycle. The Safety Manager owns the plan. Gate reviews occur at concept, design, integration, and release. The plan is version-controlled and updated at each milestone.",
+      "tags_addressed": ["safety plan", "planning", "lifecycle", "management"],
+      "methods_used": [], "traceability_links": []
+    },
+    {
+      "id": "WP-002", "title": "Item Definition — Smart Thermostat",
+      "mapped_part": "3", "mapped_sections": ["5.1"], "status": "complete",
+      "content": "The smart thermostat controls HVAC output based on temperature sensor readings, user setpoints, and occupancy detection. Interfaces include temperature sensor (I2C), relay outputs (heating/cooling), Wi-Fi module, and user display. Operating range: 0C to 50C ambient. Operating modes: heating, cooling, standby, fault. Potential malfunctions include sensor failure leading to overheating, relay stuck-on, and loss of communication.",
+      "tags_addressed": ["item definition", "interfaces", "system context", "operating modes"],
+      "methods_used": [], "traceability_links": []
+    },
+    {
+      "id": "WP-003", "title": "Hazard Analysis and Risk Assessment",
+      "mapped_part": "3", "mapped_sections": ["6.2"], "status": "complete",
+      "content": "HE1: Overheating due to sensor failure causing continuous heating (Severity: High, Exposure: High, Controllability: Medium → Level B). HE2: Cooling failure in extreme heat (Severity: Medium, Exposure: Medium, Controllability: High → Level A). Safety integrity levels assigned per the risk matrix.",
+      "tags_addressed": ["HARA", "hazard analysis", "risk assessment", "safety integrity level"],
+      "methods_used": ["Failure Modes and Effects Analysis (FMEA)"],
+      "traceability_links": [{"from": "Item Definition", "to": "HARA HE1-HE2", "type": "derives"}]
+    },
+    {
+      "id": "WP-004", "title": "Safety Goals",
+      "mapped_part": "3", "mapped_sections": ["7.1"], "status": "complete",
+      "content": "SG1: The thermostat shall prevent continuous heating when the ambient temperature exceeds the setpoint by more than 5 degrees (Level B). SG2: The thermostat shall enter a safe state (heating off) upon detection of sensor failure (Level B).",
+      "tags_addressed": ["safety goals", "hazard analysis", "traceability"],
+      "methods_used": [],
+      "traceability_links": [{"from": "HARA HE1", "to": "SG1", "type": "derives"}, {"from": "HARA HE2", "to": "SG2", "type": "derives"}]
+    },
+    {
+      "id": "WP-005", "title": "Technical Safety Concept",
+      "mapped_part": "4", "mapped_sections": ["5.1"], "status": "complete",
+      "content": "TSR1: Independent temperature watchdog shall trigger heating cutoff if temperature exceeds setpoint + 5C for more than 30 seconds. TSR2: Sensor plausibility check shall detect open-circuit and short-circuit faults within 2 seconds. TSR3: Safe state (all relays off) shall be entered within 500ms of any detected safety-relevant fault.",
+      "tags_addressed": ["technical safety concept", "requirements allocation", "hardware", "software"],
+      "methods_used": ["Fault Tree Analysis (FTA)", "Safety Analysis"],
+      "traceability_links": [{"from": "SG1", "to": "TSR1", "type": "refines"}, {"from": "SG2", "to": "TSR2, TSR3", "type": "refines"}]
+    }
+  ]
+}

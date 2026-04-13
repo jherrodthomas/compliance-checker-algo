@@ -1,0 +1,66 @@
+{
+  "part": "3",
+  "title": "Concept phase",
+  "clauses": [
+    {
+      "section": "4.1",
+      "title": "Scope of the concept phase",
+      "type": "overview",
+      "text": "This part specifies requirements for the concept phase, including item definition, hazard analysis and risk assessment, safety goals, and the functional safety concept.",
+      "tags": ["scope", "concept phase", "overview"],
+      "asil_level": "all",
+      "notes": ["Defines the boundary and scope of activities during the concept phase."],
+      "cross_references": []
+    },
+    {
+      "section": "5.1",
+      "title": "Item definition",
+      "type": "requirement",
+      "text": "An item definition shall be created that includes the functional description, interfaces, and the intended operational environment.",
+      "tags": ["item definition", "interfaces", "system context"],
+      "asil_level": "all",
+      "notes": ["The item definition is foundational for hazard analysis."],
+      "cross_references": []
+    },
+    {
+      "section": "6.1",
+      "title": "Identification of operational situations",
+      "type": "requirement",
+      "text": "Operational situations and operating modes relevant to the item shall be identified and described.",
+      "tags": ["operating modes", "use cases", "context"],
+      "asil_level": "all",
+      "notes": ["Use these situations as input to the hazard analysis."],
+      "cross_references": []
+    },
+    {
+      "section": "6.2",
+      "title": "Hazard analysis and risk assessment",
+      "type": "requirement",
+      "text": "A hazard analysis and risk assessment shall be performed to identify hazards, assess risks, and determine the required safety integrity level.",
+      "tags": ["HARA", "hazard analysis", "risk assessment", "safety integrity level"],
+      "asil_level": "all",
+      "notes": ["Severity, exposure, and controllability determine the safety level."],
+      "cross_references": ["5.1"]
+    },
+    {
+      "section": "7.1",
+      "title": "Safety goals",
+      "type": "requirement",
+      "text": "Safety goals shall be derived from the hazard analysis. Each safety goal shall be assigned a safety integrity level and linked to one or more hazardous events.",
+      "tags": ["safety goals", "hazard analysis", "traceability"],
+      "asil_level": "all",
+      "notes": ["Safety goals are the top-level safety requirements."],
+      "cross_references": ["6.2"]
+    },
+    {
+      "section": "8.1",
+      "title": "Functional safety concept",
+      "type": "requirement",
+      "text": "A functional safety concept shall be developed that specifies the functional safety requirements derived from the safety goals and allocates them to system elements.",
+      "tags": ["functional safety concept", "requirements allocation", "system design"],
+      "asil_level": "all",
+      "notes": ["The FSC bridges concept-level goals and system-level design."],
+      "cross_references": ["7.1"]
+    }
+  ]
+}

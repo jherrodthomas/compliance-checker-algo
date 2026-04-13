@@ -1,0 +1,43 @@
+{
+  "name": "lion-functional-safety",
+  "version": "1.0.0",
+  "description": "Lion of Functional Safety Engine - ISO 26262 Compliance Desktop App",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build:win": "electron-builder --win --dir"
+  },
+  "author": "Lion of Functional Safety",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.lion.functional-safety",
+    "productName": "Lion of Functional Safety",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "engine/**/*",
+      "assets/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "engine/",
+        "to": "engine",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": [{ "target": "dir", "arch": ["x64"] }],
+      "sign": false,
+      "signingHashAlgorithms": null
+    },
+    "forceCodeSigning": false
+  }
+}

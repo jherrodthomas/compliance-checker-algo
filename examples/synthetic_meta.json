@@ -1,0 +1,43 @@
+{
+  "_comment": "Example meta-config for the synthetic standard. Demonstrates how to provide schema hints to the engine.",
+
+  "standard_name": "Synthetic Safety Standard — For Demonstration Only",
+  "standard_version": "1.0",
+
+  "field_mappings": {
+    "text_field": "text",
+    "id_field": "section",
+    "title_field": "title",
+    "risk_field": "asil_level",
+    "tag_field": "tags",
+    "type_field": "type"
+  },
+
+  "risk_scale": ["A", "B", "C", "D"],
+
+  "risk_labels": {
+    "A": "Level A (lowest safety integrity)",
+    "B": "Level B",
+    "C": "Level C",
+    "D": "Level D (highest safety integrity)"
+  },
+
+  "requirement_type_values": ["requirement"],
+  "informative_type_values": ["overview", "guideline"],
+
+  "traceability_paths": [
+    {
+      "name": "Safety V-Model",
+      "path": ["Safety Goal", "Functional Safety Concept", "Technical Safety Concept", "Implementation", "Verification"],
+      "description": "Full traceability from concept through verification"
+    }
+  ],
+
+  "group_key": "part",
+  "group_labels": {
+    "1": "Glossary",
+    "2": "Safety management",
+    "3": "Concept phase",
+    "4": "System-level development"
+  }
+}

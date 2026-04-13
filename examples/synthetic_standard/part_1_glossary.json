@@ -1,0 +1,29 @@
+{
+  "glossary": [
+    {
+      "term": "Safety Integrity Level",
+      "definition": "A classification of the required level of risk reduction provided by a safety function. Higher levels indicate stricter requirements.",
+      "source": "Synthetic Example Standard, Section 3.1"
+    },
+    {
+      "term": "Hazard",
+      "definition": "A potential source of harm arising from a malfunction or unintended behavior of a system.",
+      "source": "Synthetic Example Standard, Section 3.2"
+    },
+    {
+      "term": "Work Product",
+      "definition": "A document, report, model, or artifact produced during the safety lifecycle to demonstrate compliance with requirements.",
+      "source": "Synthetic Example Standard, Section 3.3"
+    },
+    {
+      "term": "Traceability",
+      "definition": "The ability to relate requirements, design decisions, and verification results through a documented chain of evidence.",
+      "source": "Synthetic Example Standard, Section 3.4"
+    },
+    {
+      "term": "Fault Tolerance",
+      "definition": "The ability of a system to continue operating correctly in the presence of one or more faults.",
+      "source": "Synthetic Example Standard, Section 3.5"
+    }
+  ]
+}

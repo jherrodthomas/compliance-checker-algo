@@ -1,0 +1,46 @@
+{
+  "part": "2",
+  "title": "Safety management",
+  "clauses": [
+    {
+      "section": "4.1",
+      "title": "Scope of safety management",
+      "type": "overview",
+      "text": "This part specifies requirements for managing the safety lifecycle, including planning, resource allocation, and documentation control.",
+      "tags": ["scope", "management", "overview"],
+      "asil_level": "all",
+      "notes": ["Safety management spans the entire product lifecycle."],
+      "cross_references": []
+    },
+    {
+      "section": "5.1",
+      "title": "Safety plan",
+      "type": "requirement",
+      "text": "A safety plan shall be created that defines the activities, responsibilities, milestones, and work products for the safety lifecycle.",
+      "tags": ["safety plan", "planning", "lifecycle", "management"],
+      "asil_level": "all",
+      "notes": ["The plan shall be maintained and updated as the project evolves."],
+      "cross_references": []
+    },
+    {
+      "section": "5.2",
+      "title": "Documentation management",
+      "type": "requirement",
+      "text": "All safety-related documentation shall be version-controlled with traceability to requirements and change history.",
+      "tags": ["documentation", "traceability", "record keeping"],
+      "asil_level": "all",
+      "notes": ["Includes review workflows and access control."],
+      "cross_references": []
+    },
+    {
+      "section": "6.1",
+      "title": "Competence management",
+      "type": "requirement",
+      "text": "Personnel performing safety activities shall have demonstrated competence through training, experience, or qualification records.",
+      "tags": ["competence", "training", "qualification"],
+      "asil_level": "B",
+      "notes": ["Higher safety integrity levels require more rigorous competence evidence."],
+      "cross_references": []
+    }
+  ]
+}
