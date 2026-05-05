@@ -148,5 +148,5 @@ The compliance engine code is open source. **The standards it checks against are
 ---
 
 <p align="center">
-Built by <a href="https://github.com/jherrodthomas">Jerrod Thomas</a>
+Built by <a href="https://github.com/jherrodthomas">Jherrod Thomas</a>
 </p>
