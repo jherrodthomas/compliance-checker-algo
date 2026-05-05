@@ -1,0 +1,300 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 760" width="1280" height="760" role="img" aria-labelledby="archTitle archDesc">
+  <title id="archTitle">Compliance Checker Algo — 8-layer pipeline</title>
+  <desc id="archDesc">Standard and work product feed into eight analysis layers (node coverage, content alignment, semantic depth, concept coverage, reference integrity, method audit, traceability chain, gap analysis), and the layer findings are aggregated into a single compliance report.</desc>
+
+  <defs>
+    <linearGradient id="cardBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF"/>
+      <stop offset="100%" stop-color="#F8FAFC"/>
+    </linearGradient>
+    <linearGradient id="ingestTint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#EFF6FF"/>
+      <stop offset="100%" stop-color="#DBEAFE"/>
+    </linearGradient>
+    <linearGradient id="standardTint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ECFEFF"/>
+      <stop offset="100%" stop-color="#CFFAFE"/>
+    </linearGradient>
+    <linearGradient id="reportTint" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ECFDF5"/>
+      <stop offset="100%" stop-color="#D1FAE5"/>
+    </linearGradient>
+
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#475569"/>
+    </marker>
+
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="0" dy="2" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="1280" height="760" fill="#FFFFFF"/>
+
+  <!-- Title -->
+  <text x="640" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="22" font-weight="700" fill="#0F172A" text-anchor="middle" letter-spacing="-0.3">
+    8-Layer Compliance Pipeline
+  </text>
+  <text x="640" y="74" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="13" font-weight="400" fill="#64748B" text-anchor="middle">
+    Standard-agnostic · stdlib-only · every clause judged by eight independent analyses
+  </text>
+
+  <!-- INPUTS column (left) -->
+  <g transform="translate(60, 130)">
+    <text x="100" y="-12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#1E40AF" letter-spacing="1.5">INPUTS</text>
+
+    <!-- Standard card -->
+    <g filter="url(#shadow)">
+      <rect x="0" y="0" width="200" height="180" rx="12" fill="url(#standardTint)" stroke="#A5F3FC" stroke-width="1"/>
+      <text x="100" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#155E75" text-anchor="middle">Standard</text>
+      <text x="100" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#64748B" text-anchor="middle">JSON or Markdown</text>
+
+      <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600">
+        <rect x="14" y="64" width="78" height="22" rx="11" fill="#FFFFFF" stroke="#06B6D4" stroke-width="1"/>
+        <text x="53" y="79" fill="#155E75" text-anchor="middle">ISO 26262</text>
+
+        <rect x="100" y="64" width="78" height="22" rx="11" fill="#FFFFFF" stroke="#06B6D4" stroke-width="1"/>
+        <text x="139" y="79" fill="#155E75" text-anchor="middle">IEC 61508</text>
+
+        <rect x="14" y="92" width="78" height="22" rx="11" fill="#FFFFFF" stroke="#06B6D4" stroke-width="1"/>
+        <text x="53" y="107" fill="#155E75" text-anchor="middle">DO-178C</text>
+
+        <rect x="100" y="92" width="78" height="22" rx="11" fill="#FFFFFF" stroke="#06B6D4" stroke-width="1"/>
+        <text x="139" y="107" fill="#155E75" text-anchor="middle">ASPICE</text>
+
+        <rect x="14" y="120" width="164" height="22" rx="11" fill="none" stroke="#06B6D4" stroke-width="1" stroke-dasharray="3 3"/>
+        <text x="96" y="135" fill="#0E7490" text-anchor="middle" font-style="italic">your custom standard</text>
+      </g>
+
+      <text x="100" y="162" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#94A3B8" text-anchor="middle" font-style="italic">+ optional meta hints</text>
+    </g>
+
+    <!-- Work product card -->
+    <g filter="url(#shadow)" transform="translate(0, 212)">
+      <rect x="0" y="0" width="200" height="180" rx="12" fill="url(#ingestTint)" stroke="#BFDBFE" stroke-width="1"/>
+      <text x="100" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#1E3A8A" text-anchor="middle">Work Product</text>
+      <text x="100" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#64748B" text-anchor="middle">artifact_ingester.py</text>
+
+      <g transform="translate(20, 64)">
+        <!-- 4 doc icons -->
+        <rect x="0" y="0" width="34" height="44" rx="3" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.2"/>
+        <line x1="6" y1="12" x2="28" y2="12" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="6" y1="20" x2="28" y2="20" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="6" y1="28" x2="22" y2="28" stroke="#93C5FD" stroke-width="1.5"/>
+        <text x="17" y="58" font-size="9" font-weight="600" fill="#1E40AF" text-anchor="middle" font-family="-apple-system, sans-serif">.docx</text>
+
+        <rect x="42" y="0" width="34" height="44" rx="3" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.2"/>
+        <line x1="48" y1="12" x2="70" y2="12" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="48" y1="20" x2="70" y2="20" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="48" y1="28" x2="64" y2="28" stroke="#93C5FD" stroke-width="1.5"/>
+        <text x="59" y="58" font-size="9" font-weight="600" fill="#1E40AF" text-anchor="middle" font-family="-apple-system, sans-serif">.pdf</text>
+
+        <rect x="84" y="0" width="34" height="44" rx="3" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.2"/>
+        <line x1="90" y1="12" x2="112" y2="12" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="90" y1="20" x2="112" y2="20" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="90" y1="28" x2="106" y2="28" stroke="#93C5FD" stroke-width="1.5"/>
+        <text x="101" y="58" font-size="9" font-weight="600" fill="#1E40AF" text-anchor="middle" font-family="-apple-system, sans-serif">.md</text>
+
+        <rect x="126" y="0" width="34" height="44" rx="3" fill="#FFFFFF" stroke="#3B82F6" stroke-width="1.2"/>
+        <line x1="132" y1="12" x2="154" y2="12" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="132" y1="20" x2="154" y2="20" stroke="#93C5FD" stroke-width="1.5"/>
+        <line x1="132" y1="28" x2="148" y2="28" stroke="#93C5FD" stroke-width="1.5"/>
+        <text x="143" y="58" font-size="9" font-weight="600" fill="#1E40AF" text-anchor="middle" font-family="-apple-system, sans-serif">.json</text>
+      </g>
+
+      <text x="100" y="148" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#475569" text-anchor="middle">Requirements · HARA · FMEA</text>
+      <text x="100" y="164" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#475569" text-anchor="middle">Test reports · Specs</text>
+    </g>
+  </g>
+
+  <!-- 8-LAYER GRID (middle) -->
+  <text x="640" y="118" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" font-weight="700" fill="#0E7490" letter-spacing="1.5" text-anchor="middle">8-LAYER ANALYSIS</text>
+
+  <!-- Grid container hint -->
+  <rect x="320" y="130" width="640" height="500" rx="14" fill="#F8FAFC" stroke="#E2E8F0" stroke-dasharray="4 4"/>
+
+  <!-- Layer cards: 4 rows × 2 columns -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+
+    <!-- Layer 1 -->
+    <g filter="url(#shadow)" transform="translate(340, 150)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#1E40AF"/>
+      <circle cx="32" cy="28" r="14" fill="#1E40AF"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">1</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Node Coverage</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Decision tree on requirement</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">node existence</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#F1F5F9"/>
+      <text x="32" y="89" font-size="10" fill="#475569" font-family="ui-monospace, 'Cascadia Code', Menlo, Consolas, monospace">does(clause.node) ∈ artifact?</text>
+    </g>
+
+    <!-- Layer 2 -->
+    <g filter="url(#shadow)" transform="translate(650, 150)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#0EA5E9"/>
+      <circle cx="32" cy="28" r="14" fill="#0EA5E9"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">2</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Content Alignment</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">TF-IDF + cosine similarity</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">between clause and artifact</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#F0F9FF"/>
+      <text x="32" y="89" font-size="10" fill="#075985" font-family="ui-monospace, monospace">cos(tfidf(clause), tfidf(text))</text>
+    </g>
+
+    <!-- Layer 3 -->
+    <g filter="url(#shadow)" transform="translate(340, 270)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#06B6D4"/>
+      <circle cx="32" cy="28" r="14" fill="#06B6D4"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">3</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Semantic Depth</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Ratcliff/Obershelp</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">fuzzy matching</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#ECFEFF"/>
+      <text x="32" y="89" font-size="10" fill="#155E75" font-family="ui-monospace, monospace">SequenceMatcher().ratio()</text>
+    </g>
+
+    <!-- Layer 4 -->
+    <g filter="url(#shadow)" transform="translate(650, 270)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#14B8A6"/>
+      <circle cx="32" cy="28" r="14" fill="#14B8A6"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">4</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Concept Coverage</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Set intersection on</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">discovered concept tags</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#F0FDFA"/>
+      <text x="32" y="89" font-size="10" fill="#115E59" font-family="ui-monospace, monospace">|tags(clause) ∩ tags(art)|</text>
+    </g>
+
+    <!-- Layer 5 -->
+    <g filter="url(#shadow)" transform="translate(340, 390)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#10B981"/>
+      <circle cx="32" cy="28" r="14" fill="#10B981"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">5</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Reference Integrity</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Graph BFS on</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">cross-reference links</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#ECFDF5"/>
+      <text x="32" y="89" font-size="10" fill="#065F46" font-family="ui-monospace, monospace">bfs(refs, depth=∞)</text>
+    </g>
+
+    <!-- Layer 6 -->
+    <g filter="url(#shadow)" transform="translate(650, 390)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#65A30D"/>
+      <circle cx="32" cy="28" r="14" fill="#65A30D"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">6</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Method/Practice Audit</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Risk-level-aware</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">method matching</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#F7FEE7"/>
+      <text x="32" y="89" font-size="10" fill="#365314" font-family="ui-monospace, monospace">match(methods, asil/sil/dal)</text>
+    </g>
+
+    <!-- Layer 7 -->
+    <g filter="url(#shadow)" transform="translate(340, 510)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#CA8A04"/>
+      <circle cx="32" cy="28" r="14" fill="#CA8A04"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">7</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Traceability Chain</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Directed graph walk on</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">dependency paths</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#FEFCE8"/>
+      <text x="32" y="89" font-size="10" fill="#713F12" font-family="ui-monospace, monospace">path(req → impl → test)</text>
+    </g>
+
+    <!-- Layer 8 -->
+    <g filter="url(#shadow)" transform="translate(650, 510)">
+      <rect width="290" height="108" rx="10" fill="#FFFFFF" stroke="#CBD5E1"/>
+      <rect x="0" y="0" width="4" height="108" rx="2" fill="#DC2626"/>
+      <circle cx="32" cy="28" r="14" fill="#DC2626"/>
+      <text x="32" y="33" font-size="13" font-weight="800" fill="#FFFFFF" text-anchor="middle">8</text>
+      <text x="56" y="26" font-size="14" font-weight="700" fill="#0F172A">Gap Analysis + Risk</text>
+      <text x="56" y="44" font-size="11" fill="#64748B">Ensemble classifier with</text>
+      <text x="56" y="58" font-size="11" fill="#64748B">risk-weighted scoring</text>
+      <rect x="20" y="74" width="250" height="22" rx="4" fill="#FEF2F2"/>
+      <text x="32" y="89" font-size="10" fill="#7F1D1D" font-family="ui-monospace, monospace">Σ wᵢ · layerᵢ + risk_weight</text>
+    </g>
+  </g>
+
+  <!-- OUTPUTS column (right) -->
+  <g transform="translate(1000, 130)">
+    <text x="120" y="-12" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#065F46" letter-spacing="1.5" text-anchor="middle">REPORT</text>
+
+    <!-- Aggregated report -->
+    <g filter="url(#shadow)">
+      <rect x="0" y="0" width="220" height="500" rx="12" fill="url(#reportTint)" stroke="#86EFAC" stroke-width="1"/>
+      <text x="110" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#065F46" text-anchor="middle">Compliance Report</text>
+      <text x="110" y="50" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#64748B" text-anchor="middle">aggregated layer findings</text>
+
+      <!-- KPI tiles -->
+      <g transform="translate(20, 70)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+        <rect x="0" y="0" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#A7F3D0"/>
+        <text x="14" y="20" font-size="9" font-weight="600" fill="#047857" letter-spacing="0.6">PASS</text>
+        <text x="166" y="32" font-size="20" font-weight="800" fill="#10B981" text-anchor="end">142</text>
+
+        <rect x="0" y="56" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#FDE68A"/>
+        <text x="14" y="76" font-size="9" font-weight="600" fill="#92400E" letter-spacing="0.6">PARTIAL</text>
+        <text x="166" y="88" font-size="20" font-weight="800" fill="#F59E0B" text-anchor="end">17</text>
+
+        <rect x="0" y="112" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#FECACA"/>
+        <text x="14" y="132" font-size="9" font-weight="600" fill="#991B1B" letter-spacing="0.6">FAIL</text>
+        <text x="166" y="144" font-size="20" font-weight="800" fill="#EF4444" text-anchor="end">4</text>
+
+        <rect x="0" y="168" width="180" height="48" rx="6" fill="#FFFFFF" stroke="#BAE6FD"/>
+        <text x="14" y="188" font-size="9" font-weight="600" fill="#075985" letter-spacing="0.6">COVERAGE</text>
+        <text x="166" y="200" font-size="20" font-weight="800" fill="#0EA5E9" text-anchor="end">87%</text>
+      </g>
+
+      <!-- Output formats -->
+      <g transform="translate(20, 300)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600">
+        <text x="0" y="0" fill="#475569" letter-spacing="0.6">OUTPUT FORMATS</text>
+        <rect x="0" y="14" width="84" height="28" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+        <text x="42" y="32" fill="#0F172A" text-anchor="middle">.json</text>
+        <rect x="96" y="14" width="84" height="28" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+        <text x="138" y="32" fill="#0F172A" text-anchor="middle">.docx</text>
+        <rect x="0" y="50" width="84" height="28" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+        <text x="42" y="68" fill="#0F172A" text-anchor="middle">.pdf</text>
+        <rect x="96" y="50" width="84" height="28" rx="6" fill="#FFFFFF" stroke="#CBD5E1"/>
+        <text x="138" y="68" fill="#0F172A" text-anchor="middle">.html</text>
+      </g>
+
+      <text x="110" y="420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#64748B" text-anchor="middle">--format all bundles all four</text>
+
+      <!-- Mini gauge -->
+      <g transform="translate(110, 460)">
+        <circle r="22" fill="none" stroke="#E2E8F0" stroke-width="6"/>
+        <circle r="22" fill="none" stroke="#10B981" stroke-width="6" stroke-dasharray="120 138" stroke-linecap="round" transform="rotate(-90)"/>
+        <text y="5" font-size="11" font-weight="800" fill="#0F172A" text-anchor="middle">87%</text>
+      </g>
+    </g>
+  </g>
+
+  <!-- Connecting arrows -->
+  <line x1="262" y1="220" x2="338" y2="200" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="262" y1="300" x2="338" y2="320" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="262" y1="320" x2="338" y2="440" stroke="#475569" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+  <line x1="262" y1="380" x2="338" y2="560" stroke="#475569" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+
+  <!-- Layer outputs → report -->
+  <line x1="942" y1="200" x2="998" y2="220" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="942" y1="320" x2="998" y2="280" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="942" y1="440" x2="998" y2="380" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="942" y1="560" x2="998" y2="440" stroke="#475569" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Footer caption -->
+  <text x="640" y="720" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="11" fill="#94A3B8" text-anchor="middle">
+    Standard-agnostic · Standard library only · 8 independent layers per clause
+  </text>
+</svg>

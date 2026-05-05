@@ -1,0 +1,316 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 800" width="1280" height="800" role="img" aria-labelledby="dashTitle dashDesc">
+  <title id="dashTitle">Compliance Checker Dashboard — Mockup</title>
+  <desc id="dashDesc">Product mockup of the compliance dashboard showing a HARA review with pass/fail/partial findings, ASIL distribution, and action items.</desc>
+
+  <defs>
+    <filter id="appShadow" x="-2%" y="-2%" width="104%" height="106%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="0" dy="6" result="off"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.18"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="pageBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#E2E8F0"/>
+    </linearGradient>
+    <linearGradient id="sidebarBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#0B2447"/>
+      <stop offset="100%" stop-color="#11305E"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Page background -->
+  <rect width="1280" height="800" fill="url(#pageBg)"/>
+
+  <!-- Browser chrome -->
+  <g transform="translate(40, 40)" filter="url(#appShadow)">
+    <rect x="0" y="0" width="1200" height="720" rx="12" fill="#FFFFFF"/>
+
+    <!-- Title bar -->
+    <rect x="0" y="0" width="1200" height="40" rx="12" fill="#F8FAFC"/>
+    <rect x="0" y="20" width="1200" height="20" fill="#F8FAFC"/>
+    <line x1="0" y1="40" x2="1200" y2="40" stroke="#E2E8F0" stroke-width="1"/>
+    <!-- Window dots -->
+    <circle cx="20" cy="20" r="6" fill="#EF4444"/>
+    <circle cx="40" cy="20" r="6" fill="#F59E0B"/>
+    <circle cx="60" cy="20" r="6" fill="#10B981"/>
+    <!-- URL bar -->
+    <rect x="380" y="10" width="440" height="22" rx="11" fill="#FFFFFF" stroke="#CBD5E1"/>
+    <text x="394" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', monospace" font-size="11" fill="#64748B">app.compliance-checker.io/projects/ev-bms-v3/reviews</text>
+
+    <!-- Sidebar -->
+    <rect x="0" y="40" width="220" height="680" rx="0" fill="url(#sidebarBg)"/>
+    <!-- Logo in sidebar -->
+    <g transform="translate(20, 60)">
+      <path d="M 16 4 L 28 9 L 28 21 C 28 27 22 31 16 33 C 10 31 4 27 4 21 L 4 9 Z" fill="#10B981" fill-opacity="0.18" stroke="#10B981" stroke-width="1.5"/>
+      <path d="M 11 18 L 15 22 L 21 14" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="42" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#FFFFFF">Compliance Algo</text>
+    </g>
+
+    <!-- Sidebar nav -->
+    <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" fill="#CBD5E1">
+      <rect x="12" y="120" width="196" height="32" rx="6" fill="#FFFFFF" fill-opacity="0.10"/>
+      <circle cx="32" cy="136" r="3" fill="#10B981"/>
+      <text x="44" y="140" fill="#FFFFFF" font-weight="600">Dashboard</text>
+
+      <text x="44" y="172" fill="#94A3B8">Projects</text>
+      <text x="44" y="200" fill="#94A3B8">Standards</text>
+      <text x="44" y="228" fill="#94A3B8">Reviews</text>
+      <text x="44" y="256" fill="#94A3B8">Findings</text>
+      <text x="44" y="284" fill="#94A3B8">Reports</text>
+      <text x="44" y="312" fill="#94A3B8">Traceability</text>
+
+      <line x1="20" y1="340" x2="200" y2="340" stroke="#FFFFFF" stroke-opacity="0.10"/>
+
+      <text x="20" y="368" fill="#64748B" font-size="10" letter-spacing="1.5" font-weight="700">SETTINGS</text>
+      <text x="44" y="396" fill="#94A3B8">Team</text>
+      <text x="44" y="424" fill="#94A3B8">Integrations</text>
+      <text x="44" y="452" fill="#94A3B8">Audit log</text>
+    </g>
+
+    <!-- Main content -->
+    <g transform="translate(220, 40)">
+      <!-- Top bar -->
+      <rect x="0" y="0" width="980" height="64" fill="#FFFFFF"/>
+      <line x1="0" y1="64" x2="980" y2="64" stroke="#E2E8F0"/>
+
+      <!-- Breadcrumb -->
+      <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+        <text x="24" y="28" font-size="11" fill="#94A3B8">Projects / EV-BMS-v3 / Reviews</text>
+        <text x="24" y="50" font-size="18" font-weight="700" fill="#0F172A">HARA Review · v2.4</text>
+      </g>
+
+      <!-- Top right actions -->
+      <g transform="translate(740, 16)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+        <rect x="0" y="0" width="100" height="32" rx="6" fill="#F1F5F9" stroke="#CBD5E1"/>
+        <text x="50" y="20" font-size="12" font-weight="600" fill="#334155" text-anchor="middle">Export</text>
+
+        <rect x="112" y="0" width="120" height="32" rx="6" fill="#0B2447"/>
+        <text x="172" y="20" font-size="12" font-weight="600" fill="#FFFFFF" text-anchor="middle">Run review</text>
+      </g>
+
+      <!-- KPI Row -->
+      <g transform="translate(24, 88)">
+        <!-- KPI 1: Compliance score -->
+        <g>
+          <rect x="0" y="0" width="220" height="100" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+          <text x="20" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#64748B" letter-spacing="0.5">COMPLIANCE SCORE</text>
+          <text x="20" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">87.2%</text>
+          <text x="120" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#10B981">▲ 4.1%</text>
+          <text x="20" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#94A3B8">vs. last review</text>
+        </g>
+        <!-- KPI 2: PASS -->
+        <g transform="translate(232, 0)">
+          <rect x="0" y="0" width="170" height="100" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+          <rect x="0" y="0" width="4" height="100" rx="2" fill="#10B981"/>
+          <text x="20" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#64748B" letter-spacing="0.5">PASS</text>
+          <text x="20" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#10B981">142</text>
+          <text x="20" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#94A3B8">of 163 checks</text>
+        </g>
+        <!-- KPI 3: PARTIAL -->
+        <g transform="translate(414, 0)">
+          <rect x="0" y="0" width="170" height="100" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+          <rect x="0" y="0" width="4" height="100" rx="2" fill="#F59E0B"/>
+          <text x="20" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#64748B" letter-spacing="0.5">PARTIAL</text>
+          <text x="20" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#F59E0B">17</text>
+          <text x="20" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#94A3B8">need review</text>
+        </g>
+        <!-- KPI 4: FAIL -->
+        <g transform="translate(596, 0)">
+          <rect x="0" y="0" width="170" height="100" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+          <rect x="0" y="0" width="4" height="100" rx="2" fill="#EF4444"/>
+          <text x="20" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#64748B" letter-spacing="0.5">FAIL</text>
+          <text x="20" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#EF4444">4</text>
+          <text x="20" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#94A3B8">action required</text>
+        </g>
+        <!-- KPI 5: ASIL D items -->
+        <g transform="translate(778, 0)">
+          <rect x="0" y="0" width="158" height="100" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+          <text x="20" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#64748B" letter-spacing="0.5">ASIL D ITEMS</text>
+          <text x="20" y="68" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="32" font-weight="800" fill="#0F172A">8</text>
+          <text x="20" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#94A3B8">all PASS</text>
+        </g>
+      </g>
+
+      <!-- Findings table -->
+      <g transform="translate(24, 212)">
+        <rect x="0" y="0" width="600" height="412" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#0F172A">Findings</text>
+        <text x="540" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#64748B">21 open</text>
+
+        <!-- Table header -->
+        <rect x="0" y="50" width="600" height="34" fill="#F8FAFC"/>
+        <line x1="0" y1="84" x2="600" y2="84" stroke="#E2E8F0"/>
+        <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="700" fill="#64748B" letter-spacing="0.5">
+          <text x="20" y="71">ID</text>
+          <text x="76" y="71">CLAUSE</text>
+          <text x="160" y="71">FINDING</text>
+          <text x="440" y="71">ASIL</text>
+          <text x="490" y="71">STATUS</text>
+        </g>
+
+        <!-- Rows -->
+        <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#334155">
+          <!-- Row 1 -->
+          <line x1="0" y1="120" x2="600" y2="120" stroke="#F1F5F9"/>
+          <text x="20" y="106" font-weight="600">F-001</text>
+          <text x="76" y="106">3-7.4.2</text>
+          <text x="160" y="106">All 14 malfunction modes covered</text>
+          <rect x="440" y="94" width="32" height="18" rx="9" fill="#FEE2E2"/>
+          <text x="456" y="106" font-size="10" font-weight="700" fill="#991B1B" text-anchor="middle">D</text>
+          <circle cx="498" cy="103" r="4" fill="#10B981"/>
+          <text x="510" y="106" fill="#10B981" font-weight="700">PASS</text>
+
+          <!-- Row 2 -->
+          <line x1="0" y1="156" x2="600" y2="156" stroke="#F1F5F9"/>
+          <text x="20" y="142" font-weight="600">F-002</text>
+          <text x="76" y="142">3-7.4.3</text>
+          <text x="160" y="142">S/E/C ratings traceable to scenarios</text>
+          <rect x="440" y="130" width="32" height="18" rx="9" fill="#FEE2E2"/>
+          <text x="456" y="142" font-size="10" font-weight="700" fill="#991B1B" text-anchor="middle">D</text>
+          <circle cx="498" cy="139" r="4" fill="#10B981"/>
+          <text x="510" y="142" fill="#10B981" font-weight="700">PASS</text>
+
+          <!-- Row 3 -->
+          <line x1="0" y1="192" x2="600" y2="192" stroke="#F1F5F9"/>
+          <text x="20" y="178" font-weight="600">F-003</text>
+          <text x="76" y="178">3-7.4.4</text>
+          <text x="160" y="178">ASIL determination matrix complete</text>
+          <rect x="440" y="166" width="32" height="18" rx="9" fill="#FED7AA"/>
+          <text x="456" y="178" font-size="10" font-weight="700" fill="#9A3412" text-anchor="middle">C</text>
+          <circle cx="498" cy="175" r="4" fill="#10B981"/>
+          <text x="510" y="178" fill="#10B981" font-weight="700">PASS</text>
+
+          <!-- Row 4 - PARTIAL -->
+          <rect x="0" y="192" width="600" height="36" fill="#FFFBEB"/>
+          <line x1="0" y1="228" x2="600" y2="228" stroke="#F1F5F9"/>
+          <text x="20" y="214" font-weight="600">F-004</text>
+          <text x="76" y="214">3-7.4.5</text>
+          <text x="160" y="214" fill="#92400E">FTTI quantified with units (s, ms, μs)</text>
+          <rect x="440" y="202" width="32" height="18" rx="9" fill="#FEE2E2"/>
+          <text x="456" y="214" font-size="10" font-weight="700" fill="#991B1B" text-anchor="middle">D</text>
+          <circle cx="498" cy="211" r="4" fill="#F59E0B"/>
+          <text x="510" y="214" fill="#F59E0B" font-weight="700">PARTIAL</text>
+
+          <!-- Row 5 -->
+          <line x1="0" y1="264" x2="600" y2="264" stroke="#F1F5F9"/>
+          <text x="20" y="250" font-weight="600">F-005</text>
+          <text x="76" y="250">3-7.4.6</text>
+          <text x="160" y="250">Safety goal worded as preventative</text>
+          <rect x="440" y="238" width="32" height="18" rx="9" fill="#FED7AA"/>
+          <text x="456" y="250" font-size="10" font-weight="700" fill="#9A3412" text-anchor="middle">C</text>
+          <circle cx="498" cy="247" r="4" fill="#10B981"/>
+          <text x="510" y="250" fill="#10B981" font-weight="700">PASS</text>
+
+          <!-- Row 6 - FAIL -->
+          <rect x="0" y="264" width="600" height="36" fill="#FEF2F2"/>
+          <line x1="0" y1="300" x2="600" y2="300" stroke="#F1F5F9"/>
+          <text x="20" y="286" font-weight="600">F-006</text>
+          <text x="76" y="286">4-6.4.6</text>
+          <text x="160" y="286" fill="#991B1B">Each safety goal has FTTI documented</text>
+          <rect x="440" y="274" width="32" height="18" rx="9" fill="#FEE2E2"/>
+          <text x="456" y="286" font-size="10" font-weight="700" fill="#991B1B" text-anchor="middle">D</text>
+          <circle cx="498" cy="283" r="4" fill="#EF4444"/>
+          <text x="510" y="286" fill="#EF4444" font-weight="700">FAIL</text>
+
+          <!-- Row 7 -->
+          <line x1="0" y1="336" x2="600" y2="336" stroke="#F1F5F9"/>
+          <text x="20" y="322" font-weight="600">F-007</text>
+          <text x="76" y="322">3-8.4.1</text>
+          <text x="160" y="322">Functional safety concept derived</text>
+          <rect x="440" y="310" width="32" height="18" rx="9" fill="#FEF3C7"/>
+          <text x="456" y="322" font-size="10" font-weight="700" fill="#854D0E" text-anchor="middle">B</text>
+          <circle cx="498" cy="319" r="4" fill="#10B981"/>
+          <text x="510" y="322" fill="#10B981" font-weight="700">PASS</text>
+
+          <!-- Row 8 -->
+          <text x="20" y="358" font-weight="600">F-008</text>
+          <text x="76" y="358">3-8.4.2</text>
+          <text x="160" y="358">FSR allocated to architectural elements</text>
+          <rect x="440" y="346" width="32" height="18" rx="9" fill="#FEF3C7"/>
+          <text x="456" y="358" font-size="10" font-weight="700" fill="#854D0E" text-anchor="middle">B</text>
+          <circle cx="498" cy="355" r="4" fill="#10B981"/>
+          <text x="510" y="358" fill="#10B981" font-weight="700">PASS</text>
+        </g>
+
+        <!-- Footer pagination -->
+        <line x1="0" y1="376" x2="600" y2="376" stroke="#E2E8F0"/>
+        <text x="20" y="397" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#94A3B8">Showing 1–8 of 163</text>
+        <g transform="translate(500, 386)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="600">
+          <rect x="0" y="0" width="36" height="22" rx="4" fill="#F8FAFC" stroke="#E2E8F0"/>
+          <text x="18" y="15" fill="#475569" text-anchor="middle">‹</text>
+          <rect x="42" y="0" width="36" height="22" rx="4" fill="#0B2447"/>
+          <text x="60" y="15" fill="#FFFFFF" text-anchor="middle">›</text>
+        </g>
+      </g>
+
+      <!-- Right column: ASIL distribution + actions -->
+      <g transform="translate(644, 212)">
+        <!-- ASIL distribution -->
+        <rect x="0" y="0" width="312" height="200" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+        <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#0F172A">ASIL Distribution</text>
+
+        <!-- Donut -->
+        <g transform="translate(80, 70)">
+          <circle cx="40" cy="40" r="40" fill="#F1F5F9"/>
+          <!-- ASIL D segment (~25%) -->
+          <path d="M 40 0 A 40 40 0 0 1 80 40 L 40 40 Z" fill="#0B2447"/>
+          <!-- ASIL C (~30%) -->
+          <path d="M 80 40 A 40 40 0 0 1 60.5 75.5 L 40 40 Z" fill="#1E40AF"/>
+          <!-- ASIL B (~25%) -->
+          <path d="M 60.5 75.5 A 40 40 0 0 1 16.5 71.5 L 40 40 Z" fill="#3B82F6"/>
+          <!-- ASIL A (~15%) -->
+          <path d="M 16.5 71.5 A 40 40 0 0 1 1.7 30.4 L 40 40 Z" fill="#93C5FD"/>
+          <!-- QM (~5%) -->
+          <path d="M 1.7 30.4 A 40 40 0 0 1 40 0 L 40 40 Z" fill="#DBEAFE"/>
+          <!-- Inner cutout for donut -->
+          <circle cx="40" cy="40" r="22" fill="#FFFFFF"/>
+          <text x="40" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#64748B" text-anchor="middle">TOTAL</text>
+          <text x="40" y="52" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="800" fill="#0F172A" text-anchor="middle">163</text>
+        </g>
+
+        <!-- Legend -->
+        <g transform="translate(180, 60)" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11">
+          <rect x="0" y="0" width="10" height="10" rx="2" fill="#0B2447"/>
+          <text x="18" y="9" fill="#334155" font-weight="600">D · 41</text>
+          <rect x="0" y="22" width="10" height="10" rx="2" fill="#1E40AF"/>
+          <text x="18" y="31" fill="#334155" font-weight="600">C · 49</text>
+          <rect x="0" y="44" width="10" height="10" rx="2" fill="#3B82F6"/>
+          <text x="18" y="53" fill="#334155" font-weight="600">B · 41</text>
+          <rect x="0" y="66" width="10" height="10" rx="2" fill="#93C5FD"/>
+          <text x="18" y="75" fill="#475569" font-weight="600">A · 24</text>
+          <rect x="0" y="88" width="10" height="10" rx="2" fill="#DBEAFE"/>
+          <text x="18" y="97" fill="#475569" font-weight="600">QM · 8</text>
+        </g>
+
+        <!-- Action items panel -->
+        <g transform="translate(0, 220)">
+          <rect x="0" y="0" width="312" height="192" rx="10" fill="#FFFFFF" stroke="#E2E8F0"/>
+          <text x="20" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="14" font-weight="700" fill="#0F172A">Top Actions</text>
+
+          <!-- Action 1 -->
+          <g transform="translate(20, 50)">
+            <rect x="0" y="0" width="272" height="42" rx="6" fill="#FEF2F2" stroke="#FECACA"/>
+            <circle cx="14" cy="14" r="4" fill="#EF4444"/>
+            <text x="26" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#991B1B">Add FTTI to SG-04, SG-07</text>
+            <text x="26" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#7F1D1D">Blocks ASIL D verification</text>
+          </g>
+
+          <!-- Action 2 -->
+          <g transform="translate(20, 100)">
+            <rect x="0" y="0" width="272" height="42" rx="6" fill="#FFFBEB" stroke="#FDE68A"/>
+            <circle cx="14" cy="14" r="4" fill="#F59E0B"/>
+            <text x="26" y="18" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#92400E">Quantify FTTI units in HARA §4.2</text>
+            <text x="26" y="34" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" fill="#78350F">Currently text-only ("fast")</text>
+          </g>
+
+          <!-- Action 3 -->
+          <g transform="translate(20, 150)">
+            <rect x="0" y="0" width="272" height="32" rx="6" fill="#F8FAFC" stroke="#E2E8F0"/>
+            <text x="14" y="20" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" fill="#64748B">+ 15 more recommendations</text>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

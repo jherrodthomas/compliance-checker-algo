@@ -1,0 +1,174 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 360" width="1280" height="360" role="img" aria-labelledby="bannerTitle bannerDesc">
+  <title id="bannerTitle">Compliance Checker Algo</title>
+  <desc id="bannerDesc">Automated cross-checking of engineering work products against ISO 26262, IEC 61508, ISO 21434, and other functional safety standards.</desc>
+
+  <defs>
+    <!-- Background gradient: enterprise navy → steel -->
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0B2447"/>
+      <stop offset="55%" stop-color="#11305E"/>
+      <stop offset="100%" stop-color="#19376D"/>
+    </linearGradient>
+
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#FFFFFF" stroke-width="0.4" stroke-opacity="0.06"/>
+    </pattern>
+
+    <!-- Glow for the badge -->
+    <radialGradient id="badgeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Card gradient for standard chips -->
+    <linearGradient id="chipBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.10"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0.04"/>
+    </linearGradient>
+
+    <!-- Accent line gradient -->
+    <linearGradient id="accentLine" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#10B981" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#10B981" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#10B981" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="360" fill="url(#bg)"/>
+  <rect width="1280" height="360" fill="url(#grid)"/>
+
+  <!-- Decorative diagonal stripes (top right) -->
+  <g opacity="0.08" stroke="#A5F3FC" stroke-width="1.2">
+    <line x1="900" y1="-40" x2="1340" y2="400"/>
+    <line x1="940" y1="-40" x2="1380" y2="400"/>
+    <line x1="980" y1="-40" x2="1420" y2="400"/>
+    <line x1="1020" y1="-40" x2="1460" y2="400"/>
+  </g>
+
+  <!-- Accent top line -->
+  <rect x="0" y="0" width="1280" height="3" fill="url(#accentLine)"/>
+
+  <!-- Logo mark: shield with checkmark -->
+  <g transform="translate(80, 90)">
+    <!-- Glow halo -->
+    <circle cx="50" cy="60" r="80" fill="url(#badgeGlow)"/>
+    <!-- Shield outline -->
+    <path d="M 50 4 L 96 22 L 96 70 C 96 96 76 116 50 124 C 24 116 4 96 4 70 L 4 22 Z"
+          fill="#FFFFFF" fill-opacity="0.04" stroke="#A5F3FC" stroke-width="1.5"/>
+    <!-- Inner shield -->
+    <path d="M 50 14 L 86 28 L 86 68 C 86 90 70 106 50 113 C 30 106 14 90 14 68 L 14 28 Z"
+          fill="#10B981" fill-opacity="0.10" stroke="#10B981" stroke-width="2"/>
+    <!-- Checkmark -->
+    <path d="M 30 62 L 45 78 L 72 48" fill="none" stroke="#10B981" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- Title block -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif">
+    <!-- Eyebrow -->
+    <text x="220" y="115" font-size="14" font-weight="600" letter-spacing="3" fill="#7DD3FC">
+      FUNCTIONAL SAFETY · COMPLIANCE AUTOMATION
+    </text>
+
+    <!-- Main title -->
+    <text x="220" y="172" font-size="56" font-weight="800" fill="#FFFFFF" letter-spacing="-1.2">
+      Compliance Checker Algo
+    </text>
+
+    <!-- Subtitle -->
+    <text x="220" y="210" font-size="20" font-weight="400" fill="#CBD5E1">
+      Cross-check engineering work products against industry safety standards —
+    </text>
+    <text x="220" y="236" font-size="20" font-weight="400" fill="#CBD5E1">
+      automated, traceable, and audit-ready.
+    </text>
+  </g>
+
+  <!-- Standards chips row -->
+  <g font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif" transform="translate(220, 268)">
+    <!-- Chip: ISO 26262 -->
+    <g>
+      <rect x="0" y="0" width="130" height="36" rx="18" fill="url(#chipBg)" stroke="#475569" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" fill="#10B981"/>
+      <text x="32" y="23" font-size="13" font-weight="600" fill="#E2E8F0">ISO 26262</text>
+    </g>
+    <!-- Chip: IEC 61508 -->
+    <g transform="translate(142, 0)">
+      <rect x="0" y="0" width="130" height="36" rx="18" fill="url(#chipBg)" stroke="#475569" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" fill="#10B981"/>
+      <text x="32" y="23" font-size="13" font-weight="600" fill="#E2E8F0">IEC 61508</text>
+    </g>
+    <!-- Chip: ISO 21434 -->
+    <g transform="translate(284, 0)">
+      <rect x="0" y="0" width="130" height="36" rx="18" fill="url(#chipBg)" stroke="#475569" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" fill="#10B981"/>
+      <text x="32" y="23" font-size="13" font-weight="600" fill="#E2E8F0">ISO 21434</text>
+    </g>
+    <!-- Chip: ASPICE -->
+    <g transform="translate(426, 0)">
+      <rect x="0" y="0" width="110" height="36" rx="18" fill="url(#chipBg)" stroke="#475569" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" fill="#10B981"/>
+      <text x="32" y="23" font-size="13" font-weight="600" fill="#E2E8F0">ASPICE</text>
+    </g>
+    <!-- Chip: DO-178C -->
+    <g transform="translate(548, 0)">
+      <rect x="0" y="0" width="120" height="36" rx="18" fill="url(#chipBg)" stroke="#475569" stroke-width="1"/>
+      <circle cx="18" cy="18" r="4" fill="#10B981"/>
+      <text x="32" y="23" font-size="13" font-weight="600" fill="#E2E8F0">DO-178C</text>
+    </g>
+    <!-- "+ more" chip -->
+    <g transform="translate(680, 0)">
+      <rect x="0" y="0" width="80" height="36" rx="18" fill="none" stroke="#7DD3FC" stroke-width="1" stroke-dasharray="3 3"/>
+      <text x="40" y="23" font-size="13" font-weight="600" fill="#7DD3FC" text-anchor="middle">+ more</text>
+    </g>
+  </g>
+
+  <!-- Right side: data visualization mockup -->
+  <g transform="translate(900, 70)">
+    <!-- Card frame -->
+    <rect x="0" y="0" width="320" height="220" rx="14" fill="#FFFFFF" fill-opacity="0.05" stroke="#475569" stroke-width="1"/>
+    <!-- Card header -->
+    <rect x="0" y="0" width="320" height="40" rx="14" fill="#FFFFFF" fill-opacity="0.06"/>
+    <rect x="0" y="26" width="320" height="14" fill="#FFFFFF" fill-opacity="0.06"/>
+    <!-- Window dots -->
+    <circle cx="18" cy="20" r="4" fill="#EF4444" opacity="0.7"/>
+    <circle cx="32" cy="20" r="4" fill="#F59E0B" opacity="0.7"/>
+    <circle cx="46" cy="20" r="4" fill="#10B981" opacity="0.7"/>
+    <text x="160" y="25" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', monospace" font-size="11" font-weight="600" fill="#94A3B8" text-anchor="middle">compliance-report.json</text>
+
+    <!-- KPI tiles -->
+    <g transform="translate(16, 56)">
+      <!-- Pass tile -->
+      <rect x="0" y="0" width="86" height="60" rx="8" fill="#10B981" fill-opacity="0.14" stroke="#10B981" stroke-opacity="0.4" stroke-width="1"/>
+      <text x="43" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#A7F3D0" text-anchor="middle" letter-spacing="1">PASS</text>
+      <text x="43" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="800" fill="#34D399" text-anchor="middle">142</text>
+      <!-- Partial tile -->
+      <rect x="96" y="0" width="86" height="60" rx="8" fill="#F59E0B" fill-opacity="0.14" stroke="#F59E0B" stroke-opacity="0.4" stroke-width="1"/>
+      <text x="139" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#FCD34D" text-anchor="middle" letter-spacing="1">PARTIAL</text>
+      <text x="139" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="800" fill="#FBBF24" text-anchor="middle">17</text>
+      <!-- Fail tile -->
+      <rect x="192" y="0" width="86" height="60" rx="8" fill="#EF4444" fill-opacity="0.14" stroke="#EF4444" stroke-opacity="0.4" stroke-width="1"/>
+      <text x="235" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="9" font-weight="600" fill="#FCA5A5" text-anchor="middle" letter-spacing="1">FAIL</text>
+      <text x="235" y="46" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="22" font-weight="800" fill="#F87171" text-anchor="middle">4</text>
+    </g>
+
+    <!-- Bar chart -->
+    <g transform="translate(16, 132)">
+      <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="10" font-weight="600" fill="#94A3B8">Coverage by section</text>
+      <g transform="translate(0, 12)">
+        <rect x="0" y="0" width="288" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.08"/>
+        <rect x="0" y="0" width="245" height="6" rx="3" fill="#10B981"/>
+        <rect x="0" y="14" width="288" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.08"/>
+        <rect x="0" y="14" width="201" height="6" rx="3" fill="#10B981"/>
+        <rect x="0" y="28" width="288" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.08"/>
+        <rect x="0" y="28" width="173" height="6" rx="3" fill="#F59E0B"/>
+        <rect x="0" y="42" width="288" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.08"/>
+        <rect x="0" y="42" width="263" height="6" rx="3" fill="#10B981"/>
+      </g>
+    </g>
+  </g>
+
+  <!-- Bottom signature line -->
+  <rect x="0" y="357" width="1280" height="3" fill="url(#accentLine)"/>
+</svg>
